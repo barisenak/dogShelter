@@ -1,25 +1,214 @@
+* {
+  margin: 0;
+}
+
+.bcgrd_img {
+  width: 100%;
+  position: relative;
+}
+
+.sign_in {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: absolute;
+  z-index: 10;
+}
+
+.sign_btn {
+  width: 100px;
+  height: 25px;
+  background-color: white;
+  margin-left: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  outline: none;
+  border: 2px solid rgb(187, 119, 70);
+}
+
+.sign_in_input {
+  border-radius: 5px;
+}
+
+.sign_btn:hover {
+  cursor: pointer;
+  background-color: rgba(219, 219, 219, 0.397);
+}
+
+.callback_btn:hover {
+  cursor: pointer;
+  background-color: rgb(228, 95, 0);
+}
+
 .billboard {
+  position: absolute;
+  z-index: 10;
   width: 100%;
   display: flex;
   text-align: center;
   justify-content: space-around;
-  background-color: rgba(227, 235, 236, 0.322);
-  height: 60px;
+  height: 70px;
   align-items: center;
+  border-top: 0.5px solid rgba(0, 0, 0, 0.205);
+  margin-top: 35px;
 }
 
 .btn {
-  background-color: rgba(150, 188, 214, 0.548);
-  border: 0px solid rgb(51, 29, 16);
-  border-radius: 15%;
+  border: none;
   width: 150px;
-  height: 30px;
+  height: 35px;
   color: rgb(0, 0, 0);
-  font-weight: 550;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  border-bottom: 2px solid rgb(187, 119, 70);
+  font-size: 1.1rem;
+  outline: none;
+  background: none;
+}
+
+.big {
+  width: 210px;
+  height: 50px;
+  font-size: 1.3rem;
 }
 
 .btn:hover {
   cursor: pointer;
-  background-color: rgb(130, 178, 207);
+  border-bottom: 3px solid black;
+}
+
+.textAbout {
+  position: absolute;
+  top: 180px;
+  left: 90px;
+  width: 40%;
+  font-weight: 500;
+  color: black;
+}
+
+.callback_wrapper {
+  position: absolute;
+  bottom: 0;
+  right: 70px;
+  width: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.callback_head {
+  background-color: rgb(238, 112, 23);
+  padding: 10px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.callback_input {
+  height: 40px;
+  width: 330px;
+  font-size: 1.5rem;
+}
+
+.callback_btn {
+  width: 200px;
+  height: 40px;
+  background-color: rgb(238, 112, 23);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 15px;
+}
+
+.callback_btn:hover {
+  cursor: pointer;
+  background-color: rgb(228, 95, 0);
+}
+
+.pet_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: rgba(227, 235, 236, 0.322);
+}
+
+.pet_card {
+  padding-top: 25px;
+  font-size: 1.3rem;
+}
+
+.pet_name {
+  text-align: center;
+  background-color: rgba(170, 108, 58, 0.863);
+  height: 50px;
+  font-size: 2rem;
+  border: 2px solid rgba(0, 0, 0, 0.815);
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+
+.svg_wrapper {
+  text-align: right;
+}
+
+.heart {
+  width: 40px;
+  height: 40px;
+  fill: red;
+}
+
+.sort_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: 1.1rem;
+  padding-top: 135px;
+  background-color: rgba(227, 235, 236, 0.322);
+}
+
+.btns_wrapper {
+  width: 350px;
+}
+
+.sort_btn {
+  width: 100px;
+  font-size: 1.3rem;
+}
+
+.heart {
+  fill: black;
+}
+
+.heart:hover {
+  cursor: pointer;
+  fill: red;
+}
+
+.contacts {
+  margin-top: 80px;
+  width: 370px;
+  font-size: 1.2rem;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.contacts_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 70px;
+}
+
+.welcome_wrapper {
+  display: flex;
+}
+
+.welcome {
+  width: 1285px;
+  text-align: center;
+}
+
+.red {
+  fill: red;
 }
