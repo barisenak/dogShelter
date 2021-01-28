@@ -24,6 +24,7 @@ function Router() {
   const dispatch = useDispatch();
 
   let [typedPhone, setTypedPhone] = useState("");
+  let [textError, setTextError] = useState("");
 
   const isSignedInFromRedux = useSelector((state) => {
     return state.isSignedIn;
@@ -48,7 +49,9 @@ function Router() {
         const response = await axios.post("http://localhost:3001/sign-in", {
           typedPhone: typedPhone,
         });
-        dispatch(actionSignIn(response.data));
+        response.data === "Номер телефона не введен или введен неверно!"
+          ? setTextError(response.data)
+          : dispatch(actionSignIn(response.data));
       } catch (err) {
         console.log(err);
       }
@@ -56,6 +59,7 @@ function Router() {
   };
 
   const signOut = () => {
+    setTextError("");
     dispatch(actionSignOut);
   };
 
@@ -64,7 +68,7 @@ function Router() {
       <div className="sign_in">
         {isSignedInFromRedux ? (
           <div className="welcome_wrapper">
-            <p className="welcome">
+            <p className="welcome bold">
               Добро пожаловать в DogShelter, {userNameFromRedux}!
             </p>
             <button className="sign_btn" onClick={signOut}>
@@ -72,8 +76,12 @@ function Router() {
             </button>
           </div>
         ) : (
-          <div>
-            <span>Введите номер телефона: </span>
+          <div className="welcome_wrapper">
+            {textError ? (
+              <p className="welcome red">{textError}</p>
+            ) : (
+              <span className="input_p">Введите номер телефона: </span>
+            )}
             <input
               className="sign_in_input"
               type="text"

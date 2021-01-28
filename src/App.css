@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 * {
   margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 .bcgrd_img {
@@ -25,16 +28,18 @@
   font-size: 0.8rem;
   font-weight: 600;
   outline: none;
-  border: 2px solid rgb(187, 119, 70);
+  border: 2px solid rgb(0, 0, 0);
+  z-index: 20;
 }
 
 .sign_in_input {
   border-radius: 5px;
+  z-index: 25;
 }
 
 .sign_btn:hover {
   cursor: pointer;
-  background-color: rgba(219, 219, 219, 0.397);
+  background-color: rgba(0, 128, 128, 0.253);
 }
 
 .callback_btn:hover {
@@ -128,7 +133,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: rgba(227, 235, 236, 0.322);
 }
 
 .pet_card {
@@ -163,7 +167,6 @@
   text-align: center;
   font-size: 1.1rem;
   padding-top: 135px;
-  background-color: rgba(227, 235, 236, 0.322);
 }
 
 .btns_wrapper {
@@ -173,6 +176,12 @@
 .sort_btn {
   width: 100px;
   font-size: 1.3rem;
+  background-color: white;
+}
+
+.sort_btn:hover {
+  cursor: pointer;
+  background-color: rgba(0, 128, 128, 0.253);
 }
 
 .heart {
@@ -186,18 +195,22 @@
 
 .contacts {
   margin-top: 80px;
-  width: 370px;
+  width: 25%;
   font-size: 1.2rem;
+  text-align: center;
 }
 
 .bold {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .contacts_wrapper {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding-top: 70px;
+  position: absolute;
+  top: 30px;
 }
 
 .welcome_wrapper {
@@ -205,10 +218,33 @@
 }
 
 .welcome {
-  width: 1285px;
+  width: 100%;
+  left: 0;
+  position: absolute;
+  z-index: 0;
   text-align: center;
 }
 
 .red {
   fill: red;
+  color: red;
+}
+
+.connect {
+  font-weight: 600;
+  margin-top: 20px;
+  color: rgb(129, 0, 39);
+}
+
+.input_p {
+  margin-right: 10px;
+  align-items: center;
+}
+
+.favorite_text {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.5);
+  top: 250px;
+  text-align: center;
+  width: 100%;
 }

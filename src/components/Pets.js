@@ -3,16 +3,19 @@ import "../App.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
-let btns_arr = ["возрасту", "адаптивности к детям"];
+let btns_arr = ["возрасту", "адаптивности"];
 
 function Pets() {
   const dispatch = useDispatch();
 
   const [dogs, setDogs] = useState([]);
-  const [fav, setFav] = useState([]);
 
   const favoritesFromRedux = useSelector((state) => {
     return state.favorites;
+  });
+
+  const isSignedInFromRedux = useSelector((state) => {
+    return state.isSignedIn;
   });
 
   useEffect(() => {
@@ -27,27 +30,52 @@ function Pets() {
   }, []); // useEffect вызывается при изменении любой переменной компонента, после запят указываем массив перем(зависимости) при измен которых отраб useEff (лучше много эффектов). пустой массив - значит вызовется на первом рендера и
 
   const addToFav = (item) => {
-    console.log(favoritesFromRedux);
-    favoritesFromRedux.push(item);
-    console.log(favoritesFromRedux);
+    const newFav = [...favoritesFromRedux, item];
     dispatch({
       type: "CHANGE_FAV",
-      payload: favoritesFromRedux,
+      payload: newFav,
     });
-    setFav(favoritesFromRedux);
   };
 
   const delFromFav = (item) => {
     let index = favoritesFromRedux.indexOf(item);
-    console.log(index);
-    favoritesFromRedux.splice(index, 1);
+    const favCopy = [...favoritesFromRedux];
+    favCopy.splice(index, 1);
     console.log(favoritesFromRedux);
     dispatch({
       type: "CHANGE_FAV",
-      payload: favoritesFromRedux,
+      payload: favCopy,
     });
-    setFav(favoritesFromRedux);
-    console.log(favoritesFromRedux);
+  };
+
+  const sortFromSmall = (item) => {
+    const dogsCopy = [...dogs];
+    item === "возрасту"
+      ? setDogs(
+          dogsCopy.sort(function (a, b) {
+            return a.age - b.age;
+          })
+        )
+      : setDogs(
+          dogsCopy.sort(function (a, b) {
+            return a.adaptivity - b.adaptivity;
+          })
+        );
+  };
+
+  const sortFromBig = (item) => {
+    const dogsCopy = [...dogs];
+    item === "возрасту"
+      ? setDogs(
+          dogsCopy.sort(function (a, b) {
+            return b.age - a.age;
+          })
+        )
+      : setDogs(
+          dogsCopy.sort(function (a, b) {
+            return b.adaptivity - a.adaptivity;
+          })
+        );
   };
 
   return (
@@ -57,8 +85,12 @@ function Pets() {
           return (
             <div className="btns_wrapper">
               <p>Сортировать по {item}</p>
-              <button className="sort_btn">↓</button>
-              <button className="sort_btn">↑</button>
+              <button className="sort_btn" onClick={() => sortFromBig(item)}>
+                ↓
+              </button>
+              <button className="sort_btn" onClick={() => sortFromSmall(item)}>
+                ↑
+              </button>
             </div>
           );
         })}
@@ -80,21 +112,23 @@ function Pets() {
               <p>Возраст(в годах): {item.age}</p>
               <p>Адаптивность к детям: {item.adaptivity}/10</p>
               <div className="svg_wrapper">
-                <svg
-                  className={
-                    favoritesFromRedux.includes(+item.id)
-                      ? "red heart"
-                      : "heart"
-                  }
-                  onClick={
-                    favoritesFromRedux.includes(+item.id)
-                      ? () => delFromFav(+item.id)
-                      : () => addToFav(+item.id)
-                  }
-                  viewBox="0 0 511.626 511.626"
-                >
-                  <path
-                    d="M475.366,71.949c-24.175-23.606-57.575-35.404-100.215-35.404c-11.8,0-23.843,2.046-36.117,6.136
+                {isSignedInFromRedux ? (
+                  <div>
+                    <svg
+                      className={
+                        favoritesFromRedux?.includes(+item.id)
+                          ? "red heart"
+                          : "heart"
+                      }
+                      onClick={
+                        favoritesFromRedux?.includes(+item.id)
+                          ? () => delFromFav(+item.id)
+                          : () => addToFav(+item.id)
+                      }
+                      viewBox="0 0 511.626 511.626"
+                    >
+                      <path
+                        d="M475.366,71.949c-24.175-23.606-57.575-35.404-100.215-35.404c-11.8,0-23.843,2.046-36.117,6.136
 		c-12.279,4.093-23.702,9.615-34.256,16.562c-10.568,6.945-19.65,13.467-27.269,19.556c-7.61,6.091-14.845,12.564-21.696,19.414
 		c-6.854-6.85-14.087-13.323-21.698-19.414c-7.616-6.089-16.702-12.607-27.268-19.556c-10.564-6.95-21.985-12.468-34.261-16.562
 		c-12.275-4.089-24.316-6.136-36.116-6.136c-42.637,0-76.039,11.801-100.211,35.404C12.087,95.55,0,128.286,0,170.16
@@ -110,8 +144,12 @@ function Pets() {
 		c11.416-4.854,22.08-7.279,31.977-7.279s19.219,0.761,27.977,2.281c8.757,1.521,17.702,4.473,26.84,8.85
 		c9.137,4.38,16.892,10.042,23.267,16.988c6.376,6.947,11.612,16.324,15.705,28.124c4.086,11.798,6.132,25.409,6.132,40.824
 		C475.078,202.133,457.19,236.016,421.405,271.795z"
-                  />
-                </svg>
+                      />
+                    </svg>
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           );
