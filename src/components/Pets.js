@@ -112,7 +112,7 @@ function Pets() {
               <p>Возраст(в годах): {item.age}</p>
               <p>Адаптивность к детям: {item.adaptivity}/10</p>
               <div className="svg_wrapper">
-                {isSignedInFromRedux ? (
+                {isSignedInFromRedux && (
                   <div>
                     <svg
                       className={
@@ -147,8 +147,6 @@ function Pets() {
                       />
                     </svg>
                   </div>
-                ) : (
-                  <></>
                 )}
               </div>
             </div>

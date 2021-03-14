@@ -1,7 +1,7 @@
 import "../App.css";
-import contacts from "./img/contacts.jpg";
+import contacts from "../assets/img/contacts.jpg";
 
-function About() {
+function Contacts() {
   return (
     <>
       <div position="relative">
@@ -33,4 +33,4 @@ function About() {
   );
 }
 
-export default About;
+export default Contacts;

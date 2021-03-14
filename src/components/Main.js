@@ -1,6 +1,5 @@
 import "../App.css";
-import mainDog from "./img/mainDog.jpg";
-import { useSelector, useDispatch } from "react-redux";
+import mainDog from "../assets/img/mainDog.jpg";
 
 function Main() {
   return (
